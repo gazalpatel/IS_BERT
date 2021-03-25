@@ -600,9 +600,16 @@ class SentenceTransformer(nn.Sequential):
                     for loss_model in loss_models:
                         loss_model.zero_grad()
                         loss_model.train()
-
+                
+                #if(global_step%3000==0):
+                #    self.save(output_path + "_cp_" + str(global_step))
+                    
             self._eval_during_training(evaluator, output_path, save_best_model, epoch, -1, callback)
-
+        
+            self.save(output_path+"_epochend_"+str(epoch))
+            print("model saved successfully")
+        print("model training completed")
+        
     def evaluate(self, evaluator: SentenceEvaluator, output_path: str = None):
         """
         Evaluate the model
@@ -625,8 +632,8 @@ class SentenceTransformer(nn.Sequential):
             if score > self.best_score:
                 self.best_score = score
                 if save_best_model:
-                    self.save(output_path)
-
+                    self.save(output_path+"_best")
+        
 
     @staticmethod
     def _get_scheduler(optimizer, scheduler: str, warmup_steps: int, t_total: int):

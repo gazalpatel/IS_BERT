@@ -25,21 +25,18 @@ logging.basicConfig(format='%(asctime)s - %(message)s',
 #Check if dataset exsist. If not, download and extract  it
 nli_dataset_path = 'datasets/'
 sts_dataset_path = 'datasets/stsbenchmark.tsv.gz'
-
+all_nli_path = 'datasets/AllNLI.tsv.gz' 
 
 if not os.path.exists(sts_dataset_path):
     util.http_get('https://sbert.net/datasets/stsbenchmark.tsv.gz', sts_dataset_path)
-
+    util.http_get('https://sbert.net/datasets/AllNLI.tsv.gz', all_nli_path)
 
 #You can specify any huggingface/transformers pre-trained model here, for example, bert-base-uncased, roberta-base, xlm-roberta-base
 model_name = sys.argv[1] if len(sys.argv) > 1 else 'bert-base-uncased'
-
 # Read the dataset
 train_batch_size = 32
 
-
 model_save_path = 'output/training_nli_'+model_name.replace("/", "-")+'-'+datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-
 
 # Use Huggingface/transformers model (like BERT, RoBERTa, XLNet, XLM-R) for mapping tokens to embeddings
 word_embedding_model = models.Transformer(model_name)
@@ -60,11 +57,11 @@ logging.info("Read AllNLI train dataset")
 
 train_samples = []
 
-sentences = gzip.open(os.path.join(nli_dataset_path, 'nli_sentences.train.gz'),
+sentences = gzip.open(os.path.join(nli_dataset_path, 'AllNLI.tsv.gz'),
                mode="rt", encoding="utf-8").readlines()
 
 for s in sentences:
-    sentence = s.strip().split('\t')[0]
+    sentence = s.strip().split('\t')[3]
     label_id = 1
     train_samples.append(InputExample(texts=[sentence], label=1))
 

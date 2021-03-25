@@ -60,8 +60,13 @@ class CNN(nn.Module):
     def load(input_path: str):
         with open(os.path.join(input_path, 'cnn_config.json'), 'r') as fIn:
             config = json.load(fIn)
-
-        weights = torch.load(os.path.join(input_path, 'pytorch_model.bin'))
+        
+        try:
+            weights = torch.load(os.path.join(input_path, 'pytorch_model.bin'))
+        except RuntimeError as e:
+            if "but torch.cuda.is_available() is False" in str(e):
+                weights = torch.load(os.path.join(input_path, 'pytorch_model.bin'), map_location={'cuda:0': 'cpu'})
+            
         model = CNN(**config)
         model.load_state_dict(weights)
         return model

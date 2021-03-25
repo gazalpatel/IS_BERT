@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: sentence-transformers
+Version: 0.3.7.1
+Summary: Sentence Embeddings using BERT / RoBERTa / XLNet
+Home-page: https://github.com/UKPLab/sentence-transformers
+Author: Gazal Patel
+Author-email: gpatel@phigrc.com
+License: Apache License 2.0
+Download-URL: https://github.com/UKPLab/sentence-transformers/archive/v0.3.7.zip
+Description: ## Install first
+        
+        ````
+        pip3 install -e .
+        ```` 
+        
+        ## Training
+        
+        ````
+        python3 examples/training/nli/unsupervised_training_nli.py
+        ````
+        
+        ## Acknowledgements
+        
+        Codes are adapted from the repos of the EMNLP19 paper [Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks](https://github.com/UKPLab/sentence-transformers) and the ICLR19 paper [Learning Deep Representations by Mutual Information Estimation and Maximization](https://github.com/rdevon/DIM) 
+        
+Keywords: Transformer Networks BERT XLNet sentence embedding PyTorch NLP deep learning
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Description-Content-Type: text/markdown
