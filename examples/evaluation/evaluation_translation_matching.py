@@ -22,7 +22,7 @@ python distiluse-base-multilingual-cased  TED2020-en-de.tsv.gz
 See the training_multilingual/get_parallel_data_...py scripts for getting parallel sentence data from different sources
 """
 
-from sentence_transformers import SentenceTransformer, evaluation, LoggingHandler
+from language_bert import LanguageTransformer, evaluation, LoggingHandler
 import sys
 import gzip
 import os
@@ -38,7 +38,7 @@ model_name = sys.argv[1]
 filepaths = sys.argv[2:]
 inference_batch_size = 32
 
-model = SentenceTransformer(model_name)
+model = LanguageTransformer(model_name)
 
 
 for filepath in filepaths:

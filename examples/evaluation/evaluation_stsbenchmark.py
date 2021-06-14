@@ -7,9 +7,9 @@ OR
 python evaluation_stsbenchmark.py model_name
 """
 from torch.utils.data import DataLoader
-from sentence_transformers import SentenceTransformer,  SentencesDataset, LoggingHandler, evaluation
-from sentence_transformers.evaluation import EmbeddingSimilarityEvaluator, SequentialEvaluator
-from sentence_transformers.readers import STSBenchmarkDataReader
+from language_bert import LanguageTransformer,  SentencesDataset, LoggingHandler, evaluation
+from language_bert.evaluation import EmbeddingSimilarityEvaluator, SequentialEvaluator
+from language_bert.readers import STSBenchmarkDataReader
 import logging
 import sys
 import os
@@ -31,8 +31,8 @@ logging.basicConfig(format='%(asctime)s - %(message)s',
 model_name = '../training/nli/output/training_nli_bert-base-uncased-2021-01-10_14-44-13'
 
 # Load a named sentence model (based on BERT). This will download the model from our server.
-# Alternatively, you can also pass a filepath to SentenceTransformer()
-model = SentenceTransformer(model_name)
+# Alternatively, you can also pass a filepath to LanguageTransformer()
+model = LanguageTransformer(model_name)
 
 sts_corpus = "../datasets/stsbenchmark/" 
 target_eval_files = set(['sts','sts12', 'sts13', 'sts14', 'sts15', 'sts16', 'sick-r']) 

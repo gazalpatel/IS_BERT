@@ -4,7 +4,7 @@ sentences in parallel. This gives a near linear speed-up
 when encoding large text collections.
 """
 
-from sentence_transformers import SentenceTransformer, LoggingHandler
+from language_bert import LanguageTransformer, LoggingHandler
 import logging
 
 logging.basicConfig(format='%(asctime)s - %(message)s',
@@ -19,7 +19,7 @@ if __name__ == '__main__':
     sentences = ["This is sentence {}".format(i) for i in range(100000)]
 
     #Define the model
-    model = SentenceTransformer('distilbert-base-nli-stsb-mean-tokens')
+    model = LanguageTransformer('distilbert-base-nli-stsb-mean-tokens')
 
     #Start the multi-process pool on all available CUDA devices
     pool = model.start_multi_process_pool()

@@ -6,16 +6,16 @@ with open("README.md", mode="r", encoding="utf-8") as readme_file:
 
 
 setup(
-    name="sentence-transformers",
-    version="0.3.7.1",
+    name="language_bert",
+    version="0.2021.6.14",
     author="Gazal Patel",
-    author_email="gpatel@phigrc.com",
+    author_email="qgazal.patel@gmail.com",
     description="Sentence Embeddings using BERT / RoBERTa / XLNet",
     long_description=readme,
     long_description_content_type="text/markdown",
     license="Apache License 2.0",
-    url="https://github.com/UKPLab/sentence-transformers",
-    download_url="https://github.com/UKPLab/sentence-transformers/archive/v0.3.7.zip",
+    url="https://github.com/gazalpatel/Language_BERT",
+    download_url="https://github.com/gazalpatel/Language_BERT/archive/refs/heads/main.zip",
     packages=find_packages(),
     install_requires=[
         'transformers>=3.1.0,<3.4.0',

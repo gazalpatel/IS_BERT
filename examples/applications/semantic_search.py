@@ -6,10 +6,10 @@ we want to find the most similar sentence in this corpus.
 
 This script outputs for various queries the top 5 most similar sentences in the corpus.
 """
-from sentence_transformers import SentenceTransformer, util
+from language_bert import LanguageTransformer, util
 import torch
 
-embedder = SentenceTransformer('distilbert-base-nli-stsb-mean-tokens')
+embedder = LanguageTransformer('distilbert-base-nli-stsb-mean-tokens')
 
 # Corpus with example sentences
 corpus = ['A man is eating food.',

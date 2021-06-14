@@ -4,12 +4,12 @@ This examples clusters different sentences that come from the same wikipedia art
 It uses the 'wikipedia-sections' model, a model that was trained to differentiate if two sentences from the
 same article come from the same section or from different sections in that article.
 """
-from sentence_transformers import SentenceTransformer
+from language_bert import LanguageTransformer
 from sklearn.cluster import AgglomerativeClustering
 
 
 
-embedder = SentenceTransformer('bert-base-wikipedia-sections-mean-tokens')
+embedder = LanguageTransformer('bert-base-wikipedia-sections-mean-tokens')
 
 #Sentences and sections are from Wikipeda.
 #Source: https://en.wikipedia.org/wiki/Bushnell,_Illinois

@@ -3,7 +3,7 @@ This basic example loads a pre-trained model from the web and uses it to
 generate sentence embeddings for a given list of sentences.
 """
 
-from sentence_transformers import SentenceTransformer, LoggingHandler
+from language_bert import LanguageTransformer, LoggingHandler
 import numpy as np
 import logging
 
@@ -19,7 +19,7 @@ logging.basicConfig(format='%(asctime)s - %(message)s',
 
 
 # Load pre-trained Sentence Transformer Model (based on DistilBERT). It will be downloaded automatically
-model = SentenceTransformer('distilbert-base-nli-stsb-mean-tokens')
+model = LanguageTransformer('distilbert-base-nli-stsb-mean-tokens')
 
 # Embed a list of sentences
 sentences = ['This framework generates embeddings for each input sentence',

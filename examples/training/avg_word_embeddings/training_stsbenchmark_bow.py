@@ -8,7 +8,7 @@ import torch
 from torch.utils.data import DataLoader
 import math
 from sentence_transformers import models, losses
-from sentence_transformers import SentencesDataset, LoggingHandler, SentenceTransformer
+from sentence_transformers import SentencesDataset, LoggingHandler, LanguageTransformer
 from sentence_transformers.evaluation import EmbeddingSimilarityEvaluator
 from sentence_transformers.readers import *
 from sentence_transformers.models.tokenizer.WordTokenizer import ENGLISH_STOP_WORDS
@@ -59,7 +59,7 @@ sent_embeddings_dimension = max_vocab_size
 dan1 = models.Dense(in_features=sent_embeddings_dimension, out_features=768)
 dan2 = models.Dense(in_features=768, out_features=512)
 
-model = SentenceTransformer(modules=[bow, dan1, dan2])
+model = LanguageTransformer(modules=[bow, dan1, dan2])
 
 
 # Convert the dataset to a DataLoader ready for training
@@ -92,7 +92,7 @@ model.fit(train_objectives=[(train_dataloader, train_loss)],
 #
 ##############################################################################
 
-model = SentenceTransformer(model_save_path)
+model = LanguageTransformer(model_save_path)
 evaluator = EmbeddingSimilarityEvaluator.from_input_examples(sts_reader.get_examples("sts-test.csv"))
 
 model.evaluate(evaluator)

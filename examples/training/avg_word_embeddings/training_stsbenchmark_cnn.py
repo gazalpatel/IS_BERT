@@ -8,7 +8,7 @@ import torch
 from torch.utils.data import DataLoader
 import math
 from sentence_transformers import models, losses
-from sentence_transformers import SentencesDataset, LoggingHandler, SentenceTransformer
+from sentence_transformers import SentencesDataset, LoggingHandler, LanguageTransformer
 from sentence_transformers.evaluation import EmbeddingSimilarityEvaluator
 from sentence_transformers.readers import *
 import logging
@@ -40,7 +40,7 @@ pooling_model = models.Pooling(cnn.get_word_embedding_dimension(),
                                pooling_mode_max_tokens=False)
 
 
-model = SentenceTransformer(modules=[word_embedding_model, cnn, pooling_model])
+model = LanguageTransformer(modules=[word_embedding_model, cnn, pooling_model])
 
 
 # Convert the dataset to a DataLoader ready for training
@@ -73,7 +73,7 @@ model.fit(train_objectives=[(train_dataloader, train_loss)],
 #
 ##############################################################################
 
-model = SentenceTransformer(model_save_path)
+model = LanguageTransformer(model_save_path)
 evaluator = EmbeddingSimilarityEvaluator.from_input_examples(sts_reader.get_examples("sts-test.csv"))
 
 model.evaluate(evaluator)

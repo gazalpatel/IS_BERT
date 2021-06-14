@@ -7,7 +7,8 @@ pip3 install -e .
 ## Training
 
 ````
-python3 examples/training/nli/unsupervised_training_nli.py
+cd examples/training/similarity_search
+python3 training_similarity_model.py
 ````
 
 ## Acknowledgements

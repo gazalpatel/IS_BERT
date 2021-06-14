@@ -6,7 +6,7 @@ python evaluation_inference_speed.py
 OR
 python evaluation_inference_speed.py model_name
 """
-from sentence_transformers import SentenceTransformer, util
+from language_bert import LanguageTransformer, util
 import sys
 import os
 import time
@@ -21,8 +21,8 @@ torch.set_num_threads(4)
 model_name = sys.argv[1] if len(sys.argv) > 1 else 'bert-base-nli-mean-tokens'
 
 # Load a named sentence model (based on BERT). This will download the model from our server.
-# Alternatively, you can also pass a filepath to SentenceTransformer()
-model = SentenceTransformer(model_name)
+# Alternatively, you can also pass a filepath to LanguageTransformer()
+model = LanguageTransformer(model_name)
 
 
 nli_dataset_path = 'datasets/AllNLI.tsv.gz'

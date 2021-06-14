@@ -1,14 +1,14 @@
 """
-This example loads the pre-trained SentenceTransformer model 'bert-base-nli-mean-tokens' from the server.
+This example loads the pre-trained LanguageTransformer model 'bert-base-nli-mean-tokens' from the server.
 It then fine-tunes this model for some epochs on the STS benchmark dataset.
 
-Note: In this example, you must specify a SentenceTransformer model.
+Note: In this example, you must specify a LanguageTransformer model.
 If you want to fine-tune a huggingface/transformers model like bert-base-uncased, see training_nli.py and training_stsbenchmark.py
 """
 from torch.utils.data import DataLoader
 import math
-from sentence_transformers import SentenceTransformer,  SentencesDataset, LoggingHandler, losses, util, InputExample
-from sentence_transformers.evaluation import EmbeddingSimilarityEvaluator
+from language_bert import LanguageTransformer,  SentencesDataset, LoggingHandler, losses, util, InputExample
+from language_bert.evaluation import EmbeddingSimilarityEvaluator
 import logging
 from datetime import datetime
 import os
@@ -40,7 +40,7 @@ model_save_path = 'output/training_stsbenchmark_continue_training-'+model_name+'
 
 
 # Load a pre-trained sentence transformer model
-model = SentenceTransformer(model_name)
+model = LanguageTransformer(model_name)
 
 # Convert the dataset to a DataLoader ready for training
 logging.info("Read STSbenchmark train dataset")
@@ -92,6 +92,6 @@ model.fit(train_objectives=[(train_dataloader, train_loss)],
 #
 ##############################################################################
 
-model = SentenceTransformer(model_save_path)
+model = LanguageTransformer(model_save_path)
 test_evaluator = EmbeddingSimilarityEvaluator.from_input_examples(test_samples, name='sts-test')
 test_evaluator(model, output_path=model_save_path)

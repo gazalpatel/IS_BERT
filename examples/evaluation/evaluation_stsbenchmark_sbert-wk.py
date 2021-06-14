@@ -7,9 +7,9 @@ for which there is so far not efficient implementation in pytorch for GPUs (see 
 Hence, WKPooling runs on the GPU, which makes it rather in-efficient.
 """
 from torch.utils.data import DataLoader
-from sentence_transformers import SentenceTransformer,  SentencesDataset, LoggingHandler, models
-from sentence_transformers.evaluation import EmbeddingSimilarityEvaluator
-from sentence_transformers.readers import STSBenchmarkDataReader
+from language_bert import LanguageTransformer,  SentencesDataset, LoggingHandler, models
+from language_bert.evaluation import EmbeddingSimilarityEvaluator
+from language_bert.readers import STSBenchmarkDataReader
 import logging
 import torch
 
@@ -31,7 +31,7 @@ word_embedding_model = models.Transformer('bert-base-uncased', model_args={'outp
 pooling_model = models.WKPooling(word_embedding_model.get_word_embedding_dimension())
 
 #3) Create a sentence transformer model to glue both models together
-model = SentenceTransformer(modules=[word_embedding_model, pooling_model])
+model = LanguageTransformer(modules=[word_embedding_model, pooling_model])
 
 sts_reader = STSBenchmarkDataReader('../datasets/stsbenchmark')
 evaluator = EmbeddingSimilarityEvaluator.from_input_examples(sts_reader.get_examples("sts-test.csv"))

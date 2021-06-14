@@ -10,7 +10,7 @@ import torch
 from torch.utils.data import DataLoader
 import math
 from sentence_transformers import models, losses
-from sentence_transformers import SentencesDataset, LoggingHandler, SentenceTransformer
+from sentence_transformers import SentencesDataset, LoggingHandler, LanguageTransformer
 from sentence_transformers.evaluation import EmbeddingSimilarityEvaluator
 from sentence_transformers.readers import *
 import logging
@@ -44,7 +44,7 @@ sent_embeddings_dimension = pooling_model.get_sentence_embedding_dimension()
 dan1 = models.Dense(in_features=sent_embeddings_dimension, out_features=sent_embeddings_dimension)
 dan2 = models.Dense(in_features=sent_embeddings_dimension, out_features=sent_embeddings_dimension)
 
-model = SentenceTransformer(modules=[word_embedding_model, pooling_model, dan1, dan2])
+model = LanguageTransformer(modules=[word_embedding_model, pooling_model, dan1, dan2])
 
 
 # Convert the dataset to a DataLoader ready for training
@@ -77,6 +77,6 @@ model.fit(train_objectives=[(train_dataloader, train_loss)],
 #
 ##############################################################################
 
-model = SentenceTransformer(model_save_path)
+model = LanguageTransformer(model_save_path)
 evaluator = EmbeddingSimilarityEvaluator.from_input_examples(sts_reader.get_examples("sts-test.csv"))
 model.evaluate(evaluator)

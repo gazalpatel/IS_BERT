@@ -18,7 +18,7 @@ that it aligned for 100 languages. I.e., you can type in a question in various l
 return the closest questions in the corpus (questions in the corpus are mainly in English).
 """
 
-from sentence_transformers import SentenceTransformer, util
+from language_bert import LanguageTransformer, util
 import os
 from elasticsearch import Elasticsearch
 import csv
@@ -29,7 +29,7 @@ from elasticsearch import helpers
 if __name__ == '__main__':
     es = Elasticsearch()
 
-    model = SentenceTransformer('distilbert-multilingual-nli-stsb-quora-ranking')
+    model = LanguageTransformer('distilbert-multilingual-nli-stsb-quora-ranking')
 
     url = "http://qim.fs.quoracdn.net/quora_duplicate_questions.tsv"
     dataset_path = "quora_duplicate_questions.tsv"

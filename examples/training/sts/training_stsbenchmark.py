@@ -10,9 +10,9 @@ python training_nli.py pretrained_transformer_model_name
 """
 from torch.utils.data import DataLoader
 import math
-from sentence_transformers import SentenceTransformer,  SentencesDataset, LoggingHandler, losses, models, util
-from sentence_transformers.evaluation import EmbeddingSimilarityEvaluator
-from sentence_transformers.readers import STSBenchmarkDataReader, InputExample
+from language_bert import LanguageTransformer,  SentencesDataset, LoggingHandler, losses, models, util
+from language_bert.evaluation import EmbeddingSimilarityEvaluator
+from language_bert.readers import STSBenchmarkDataReader, InputExample
 import logging
 from datetime import datetime
 import sys
@@ -54,7 +54,7 @@ pooling_model = models.Pooling(word_embedding_model.get_word_embedding_dimension
                                pooling_mode_cls_token=False,
                                pooling_mode_max_tokens=False)
 
-model = SentenceTransformer(modules=[word_embedding_model, pooling_model])
+model = LanguageTransformer(modules=[word_embedding_model, pooling_model])
 
 # Convert the dataset to a DataLoader ready for training
 logging.info("Read STSbenchmark train dataset")
@@ -104,6 +104,6 @@ model.fit(train_objectives=[(train_dataloader, train_loss)],
 #
 ##############################################################################
 
-model = SentenceTransformer(model_save_path)
+model = LanguageTransformer(model_save_path)
 test_evaluator = EmbeddingSimilarityEvaluator.from_input_examples(test_samples, name='sts-test')
 test_evaluator(model, output_path=model_save_path)
