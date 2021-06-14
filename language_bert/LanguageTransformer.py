@@ -600,7 +600,6 @@ class LanguageTransformer(nn.Sequential):
 
                 training_steps += 1
                 global_step += 1
-                logging.info("global_step %s"%(global_step))
                 if evaluator:
                     if evaluation_steps > 0 and training_steps % evaluation_steps == 0:
                         self._eval_during_training(evaluator, output_path, save_best_model, epoch,
