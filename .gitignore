@@ -8,5 +8,4 @@ dist
 .idea
 .scrapy
 language_bert.egg-info
-datasets
 docs
